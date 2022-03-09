@@ -1,18 +1,19 @@
 from application import db
 
-class Todo(db.Model):
-    pk = db.Column(db.Integer, primary_key = True)
-    title = db.Column(db.String(30))
-    desc = db.Column(db.String(100))
-    status = db.Column(db.String(4))
-    proj_id = db.Column(db.Integer, db.ForeignKey('project.pk'))
-    def __str__(self):
-        return f"{self.status} {self.title}:\n{self.desc}"
+class User(db.Model):
+    user_id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(75))
+    password = db.Column(db.String(20))
+    partner = db.Column(db.Boolean)
+    dater = db.Column(db.Boolean)
 
-class Project(db.Model):
-    pk = db.Column(db.Integer, primary_key = True)
-    project_name = db.Column(db.String(30))
-    due_date = db.Column(db.Date)
-    proj_items = db.relationship('Todo', backref='project')
-    def __str__(self):
-        return f"{self.project_name}, due {self.due_date}"
+
+personofinterest = db.relationship( 'Interest', foreign_keys='Interest.personofinterest_id', backref='Interester', lazy=True)
+
+
+
+class Questions(db.Model):
+    questions_id = db.Column(db.Integer, primary_key=True)
+    question = db.Column(db.Text)
+    answer = db.Column(db.Text)
+    personofinterest_id = db.Column(db.Integer, db.ForeignKey('user.id'))
