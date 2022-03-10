@@ -1,33 +1,37 @@
+from itertools import product
 from flask import redirect, url_for, render_template, request
 from application import app, db
 from datetime import date, timedelta
-from application.models import user
+from application.forms import AddProduct, UpdateProduct, ChooseProduct
+from application.models import Product, user, Orders
+from wtforms import validators
 
 @app.route('/index')
 @app.route("/", methods=["GET", "POST"])
 def home():
-   if request.form:
-        print(request.form)
+   form = AddProduct()
+   if request.method == 'POST':
+      product_name = form.product_name.data
+      product_cost = form.product_cost.data
+      product_description = form.product_description.data
+      newProduct = Product(product_name = product_name, product_cost=product_cost, product_description = product_description)
+      db.session.add(newProduct)
+      db.session.commit()
    return render_template('index.html')
 
 
 
-@app.route('/add_an_item')
-@app.route("/", methods=["GET", "POST"])
+
+@app.route('/add_an_item', methods=["GET", "POST"])
 def add_an_item():
-   return render_template('add_an_item.html')
+   if request.form:
+      Product = product(product_name=request.form.get("Product Name"))
+      db.session.add(Product)
+      db.session.commit()
+   return render_template('add_an_item')
 
-@app.route('/Shopping_Cart')
-@app.route("/", methods=["GET", "POST"])
+@app.route('/Shopping_Cart', methods=["GET", "POST"])
 def Shopping_Cart():
+   if request.form:
+      print(request.form)
    return render_template('Shopping_Cart.html')
-
-@app.route('/your_reviews')
-@app.route("/", methods=["GET", "POST"])
-def your_reviews():
-   return render_template('your_reviews.html')
-
-@app.route('/Apply_for_job')
-@app.route("/", methods=["GET", "POST"])
-def Apply_for_job():
-   return render_template('Apply_for_job.html')
