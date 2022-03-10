@@ -20,6 +20,7 @@ class Product(db.Model):
     product_name = db.Column(db.String(150))
     product_description = db.Column(db.String(150))
     product_cost = db.Column(db.Numeric(6,2))
+    product_quantity = db.Column(db.Integer)
     # fk_product_type_id = db.Column(db.Integer, db.ForeignKey('Product_Type.id'))
     def __repr__(self):
         return f"{self.product_name}"    
