@@ -17,7 +17,7 @@
         {{product.product_description}}
         {{product.product_cost}}
         {{product.product_quantity}}</p>
-        {% endfor %}}
+        {% endfor %}
         {% for product in listofProducts %}
         <p>{{product.product_name}}</p>
         <form method="POST" action="/update">
@@ -25,6 +25,10 @@
             <input type="number" value="{{product.product_quantity}}" name="newquantity">
             <input type="submit" value="Update quantity">
         </form>
+        <form method="POST" action="/delete">
+            <input type="hidden" value="{{product.product_name}}" name="product_name">
+            <input type="submit" value="Delete">
+          </form>
         {% endfor %}
 
         

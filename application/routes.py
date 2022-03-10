@@ -43,3 +43,12 @@ def update():
     q.product_quantity = newquantity
     db.session.commit()
     return redirect("/")
+
+
+@app.route("/delete", methods=["POST"])
+def delete():
+   product_name = request.form.get("product_name")
+   p = Product.query.filter_by(product_name=product_name).first()
+   db.session.delete(p)
+   db.session.commit()
+   return redirect("/")

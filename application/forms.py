@@ -28,3 +28,17 @@ class ChooseProduct(FlaskForm):
     chosenProduct = SelectField('Product', choices=[])
     submit = SubmitField("Choose Product")
 
+class AddOrders(FlaskForm):
+    order_placed = StringField('order placed', validators=[DataRequired(message="This field cannot be left blank")])
+    order_total = IntegerField("Cost", validators=[DataRequired(message="This field cannot be left blank")])
+    submit = SubmitField("Add Item")
+
+class UpdateOrders(FlaskForm):
+    order_placed = StringField('order placed', validators=[DataRequired(message="This field cannot be left blank")])
+    order_total = IntegerField("Cost", validators=[DataRequired(message="This field cannot be left blank")])
+    submit = SubmitField("Add Item")
+
+class ChooseOrders(FlaskForm):
+    order_placed = StringField('order placed', validators=[DataRequired(message="This field cannot be left blank")])
+    order_total = IntegerField("Cost", validators=[DataRequired(message="This field cannot be left blank")])
+    submit = SubmitField("Add Item")
