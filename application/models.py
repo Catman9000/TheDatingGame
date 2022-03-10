@@ -1,19 +1,28 @@
 from application import db
+from sqlalchemy.orm import relationship
 
-class User(db.Model):
-    user_id = db.Column(db.Integer, primary_key=True)
+class user(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(75))
-    password = db.Column(db.String(20))
-    partner = db.Column(db.Boolean)
-    dater = db.Column(db.Boolean)
+    user_email = db.Column(db.String(75))
+    user_address = db.Column(db.String(75))
+    orders = db.relationship('Order', backref='person',
+                            lazy='dynamic')
 
 
-personofinterest = db.relationship( 'Interest', foreign_keys='Interest.personofinterest_id', backref='Interester', lazy=True)
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    product_description = db.Column(db.String(150))
+    product_cost = db.Column(db.Float(6,2))
 
 
+class Product_Type(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    product_category = db.Column(db.String(150))
+    products_id = db.Column(db.Integer, db.ForeignKey('Product.id'))
 
-class Questions(db.Model):
-    questions_id = db.Column(db.Integer, primary_key=True)
-    question = db.Column(db.Text)
-    answer = db.Column(db.Text)
-    personofinterest_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+class Order(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    order_placed = db.Column(db.DATETIME)
+    order_total = db.Column(db.Float(7,2))
+    
