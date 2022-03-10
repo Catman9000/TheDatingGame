@@ -9,9 +9,9 @@ from wtforms import validators
 @app.route('/index', methods=["GET", "POST"])
 @app.route("/", methods=["GET", "POST"])
 def home():
-   if request.form:
-      print(request.form)
-   return render_template('index.html')
+   listofProducts= Product.query.all()
+   return render_template("index.html", listofProducts=listofProducts)
+  
 
 
 @app.route('/add_an_item', methods=["GET", "POST"])
