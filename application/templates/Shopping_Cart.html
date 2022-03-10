@@ -5,12 +5,8 @@
     <body style="background-color: lightblue;">
         <h1>Cat Treat Store</h1>
         <h2>Home</h2>
-        <a href="{{ url_for('home') }}">Home</a> || <a href="{{ url_for('Shopping_Cart') }}">Shopping Cart</a> || <a href="{{ url_for('your_reviews') }}">Your Reviews</a> || <a href="{{ url_for('add_an_item') }}">Add an item</a> || <a href="{{ url_for('Apply_for_job') }}">Apply for job </a>
+        <a href="{{ url_for('home') }}">Home</a> || <a href="{{ url_for('Shopping_Cart') }}">Shopping Cart</a> || <a href="{{ url_for('add_an_item') }}">Add an item</a> 
 
-        <form method="POST" action="/">
-            <input type="text" name="Cat Item">
-            <input type="submit" value="Add to Checkout">
-          </form>
 {% block body %}
 {% endblock body %}
     </body>

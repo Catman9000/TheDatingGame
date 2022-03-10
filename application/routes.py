@@ -6,9 +6,16 @@ from application.forms import AddProduct, UpdateProduct, ChooseProduct
 from application.models import Product, user, Orders
 from wtforms import validators
 
-@app.route('/index')
+@app.route('/index', methods=["GET", "POST"])
 @app.route("/", methods=["GET", "POST"])
 def home():
+   if request.form:
+      print(request.form)
+   return render_template('index.html')
+
+
+@app.route('/add_an_item', methods=["GET", "POST"])
+def add_an_item():
    form = AddProduct()
    if request.method == 'POST':
       product_name = form.product_name.data
@@ -17,18 +24,7 @@ def home():
       newProduct = Product(product_name = product_name, product_cost=product_cost, product_description = product_description)
       db.session.add(newProduct)
       db.session.commit()
-   return render_template('index.html')
-
-
-
-
-@app.route('/add_an_item', methods=["GET", "POST"])
-def add_an_item():
-   if request.form:
-      Product = product(product_name=request.form.get("Product Name"))
-      db.session.add(Product)
-      db.session.commit()
-   return render_template('add_an_item')
+   return render_template('add_an_item.html')
 
 @app.route('/Shopping_Cart', methods=["GET", "POST"])
 def Shopping_Cart():
