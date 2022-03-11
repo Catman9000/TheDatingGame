@@ -6,9 +6,9 @@ class user(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(75))
-    user_email = db.Column(db.String(75))
-    user_address = db.Column(db.String(75))
-    orders = db.relationship('Orders', backref='user',
+    email = db.Column(db.String(75))
+    address = db.Column(db.String(75))
+    orders = db.relationship('orders', backref='user',
                             lazy='dynamic')
     def __repr__(self):
         return f"{self.username}" 
@@ -31,13 +31,10 @@ class Product(db.Model):
 #     def __repr__(self):
 #         return f"{self.product_category}"
 
-class Orders(db.Model):
-    __tablename__ = 'Orders'
+class orders(db.Model):
+    __tablename__ = ''
     id = db.Column(db.Integer, primary_key=True)
-    order_placed = db.Column(db.DATETIME)
-    order_total = db.Column(db.Numeric(7,2))
     orderer = db.Column(db.Integer, db.ForeignKey('user.id'))
     product_ordered = db.Column(db.Integer, db.ForeignKey('Product.id'))
-    def __repr__(self):
-        return f"{self.order_placed}"
+  
     

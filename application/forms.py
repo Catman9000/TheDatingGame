@@ -42,3 +42,15 @@ class ChooseOrders(FlaskForm):
     order_placed = StringField('order placed', validators=[DataRequired(message="This field cannot be left blank")])
     order_total = IntegerField("Cost", validators=[DataRequired(message="This field cannot be left blank")])
     submit = SubmitField("Add Item")
+
+
+class AddUser(FlaskForm):
+    username = StringField('User name', validators=[DataRequired(message="This field cannot be left blank")])
+    email = StringField("Email", validators=[DataRequired(message="This field cannot be left blank")])
+    address = StringField("Address", validators=[DataRequired(message="This field cannot be left blank")])
+    submit = SubmitField("Add User")
+
+class AddCart(FlaskForm):
+    username = SelectField("Name of user", choices=[10])
+    product_name = SelectField("Items", choices=[10])
+    submit = SubmitField("Create cart")

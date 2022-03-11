@@ -4,7 +4,7 @@
     </head>
     <body style="background-color: lightblue;">
         <h1>Cat Treat Store</h1>
-        <a href="{{ url_for('home') }}">Home</a> || <a href="{{ url_for('Shopping_Cart') }}">Shopping Cart</a> || <a href="{{ url_for('add_an_item') }}">Add an item</a>
+        <a href="{{ url_for('home') }}">Home</a> || <a href="{{ url_for('Shopping_Cart') }}">Shopping Cart</a> || <a href="{{ url_for('add_an_item') }}">Add an item</a> || <a href="{{ url_for('add_user') }}">Add an user</a> 
         <form method="POST" action="/add_an_item">
             <input type="text" name="product_name" placeholder="Enter a product">
             <input type="text" name="product_description" placeholder="Enter description">
