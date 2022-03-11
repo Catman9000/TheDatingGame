@@ -24,6 +24,9 @@ To manage my workflow, I used Jira, which is known to be extremely effective in 
 
 Although I did set up Jenkins as shown below, I unfortunately was not able to get it working in time due to several issues with Google Cloud which were shown to my instructor Adam. These took a lot of time and ate into valuable time-based progress as a lot of things were dependent on them. I have also screenshot that particular error too.
 
+
+![Flask diagram](https://github.com/Catman9000/TheDatingGame/blob/main/ERD.png)
+
 ## The App
 
 The basis of my app was to have a very simple website where the idea was I am using it to manage my own stock of cat inventory. Originally, the idea was to have a dating quiz, however due to difficulties in my project and GCS bugs which were Google-Side, I was unable to carry out the original project. As a result, I decided to tame it down and do the best I could until everything was sorted. Unfortunately, this took a bit of time and is not something I expected to face given the time constraints and usual reliability of big cloud vendors. However, this has also taught me a valuable lesson to make sure I plan far ahead in case such occurances happen. 
@@ -33,7 +36,12 @@ A Product table which could create entries, delete entries, update entries and r
 A User table which could create user entries in the event that I need to take a trip and someone needs to look after my cats and can manage it all.
 A Shopping Cart-style table which would contain orders on the way as well as who ordered them and what, so that expenditure can be managed and things aren't ordered in excess. 
 My ERD Diagram is as follows:
+
 ![ERD diagram](https://github.com/Catman9000/TheDatingGame/blob/main/ERD.png)
+
+The ERD diagrams helped me visualise how I wanted to plan the project going forward and what shape and form my database tables would look, as well as what kind of data they would contain. This is helpful because it helps to plan ahead the relationships between the various tables within the database and how they will interact with each other.
+The relationship between User and Item is one to many.
+The relationship between Item to Orders was many to one, and the relationship between shop orders and user was many to one.
 
 I would have preferred to have a more full-fledged interactive website, which would track the orders and deliveries between my 3 cats, and assign product types, favourites, who issued the orders as well as total cost/expenditure. This is something I plan to do going forward.
 
@@ -45,11 +53,12 @@ For tracking, I chose Jira. This is because it's what I learnt on the course, an
 
 I decided to follow the structure I was taught in my 4 week course, including making use of user stories, following the format of "As a user/developer, I want to... So that...."
 
-
-I also broke down the project into 3 parts:
+I also broke down the project planning into 3 parts:
 To-Do: The parts of the project that are/were to be done,
 In Progress: In progress/things being worked on,
-Done: What was completed. 
+Done: What was completed.
+
+Below is the structure of the tools and my CI Pipeline.
 
 ![Project Roadmap](https://github.com/Catman9000/TheDatingGame/blob/main/CI.png)
 
@@ -59,19 +68,15 @@ Git was my dedicated choice of Version Control System, due to it being extremely
 
 I also used MySQL to set up the databased and also cross-integrated and managed via SQLAlchemy in Flask.
 
+Below is my network graph, which is something Github generates via insights to show the branches and structure of the changes and commits. This is useful because it gives you a visual representation, and also helps identify at what stages changes were committed, as well who made them and at what level.
+
 ![Network Graph](https://github.com/Catman9000/TheDatingGame/blob/main/network.png)
 
-
-
-**Automated Build and Testing**
-
-Jenkins was used for the automation of the build and testing. A freestyle project was set up, with test scripts saved into an sh file on the repository which were ran every time a commit was pushed to the repository. Artefact reports were generated after each build and if the build was successful, Jenkins automatically deployed the application using Gunicorn.
-
-Below shows the commands that Jenkins executed and the confirmation of a successful build and deployment.
+Jenkins was used to build and deploy via automation, as well as running integration testing.
 
 ![Jenkins](https://github.com/Catman9000/TheDatingGame/blob/main/jenkins2.png)
 
-![Jenkins Two(https://github.com/Catman9000/TheDatingGame/blob/main/jenkins3.png)
+![Jenkins Two](https://github.com/Catman9000/TheDatingGame/blob/main/jenkins3.png)
 
 
 ## My App - The Cat Stock Inventory
@@ -90,6 +95,20 @@ Add a user
 
 Add Items, Update, Delete, Read.
 
+## Risk Assessment:
+
+![Risk assessment](https://github.com/Catman9000/TheDatingGame/blob/main/Risk%20Assessment.png)
+
+
 ## Known Issues:
 
 GCP's APIs on my account refused to work despite numerous attempts, so I had to halt my project until a fix was found. This severely impacted my progress and was very spontaneous, having no rhyme or rhythm. This resulted in several issues that impacted the whole of the project, including leaving me short on time and affecting Flask development, server instancing, Jenkins too.
+
+## Future Improvements:
+Given time to reiterate and further improve the project, I would have preferred to make some final adjustments and changes to the project, in addition to the ones mentioned already. These include:
+
+* - UI - Given the nature of the web application, I would have preferred to have a more aesthetic website that was easier on the eye and not as rough-looking.
+
+* - Bugs - I would have liked to resolve bugs and slight errors that occured. This is because if I have an application, I would want to eliminate all bugs so that it works as smoothly as possible. Given my relative inexperience, this was to be expected but it is the end goal regardless and one I strived to work towards.
+
+* - Jenkins
