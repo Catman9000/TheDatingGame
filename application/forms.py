@@ -51,6 +51,6 @@ class AddUser(FlaskForm):
     submit = SubmitField("Add User")
 
 class AddCart(FlaskForm):
-    username = SelectField("Name of user", choices=[10])
-    product_name = SelectField("Items", choices=[10])
+    username = SelectField("Name of user", choices=[])
+    product_name = SelectField("Items", choices=[])
     submit = SubmitField("Create cart")
