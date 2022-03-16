@@ -8,7 +8,7 @@ from wtforms import validators
 
 @app.route('/index', methods=["GET", "POST"])
 @app.route("/", methods=["GET", "POST"])
-def home():
+def index():
    listofProducts= Product.query.all()
    return render_template("index.html", listofProducts=listofProducts)
   
