@@ -108,6 +108,7 @@ class TestBase(TestCase):
     def setUp(self): #run before each test
         db.create_all()
         test_product = Product(product_name='Sample Product', product_description ='Sample desc', product_cost =1, product_quantity=1)
+        test_product_2 = Product(product_name='Sample Product 2', product_description ='Sample desc', product_cost =1, product_quantity=1)
         test_user = user(username='Sample Name', email ='sample@gmail.com', address = 'Sample Address')
 
         db.session.add(test_product)
@@ -119,12 +120,42 @@ class TestBase(TestCase):
         db.session.remove()
         db.drop_all()
 
+class TestHome(TestBase):
+    def test_home(self):
+        response = self.client.get(url_for('index'))
+        self.assert200(response)
+        self.assertIn(b'Home', response.data)
+
+    def test_home_shoppingcart(self):
+        response = self.client.get(url_for('Shopping_Cart'))
+        self.assert200(response)
+        self.assertIn(b'Shopping Cart', response.data)
+    
+    def test_home_product(self):
+        response = self.client.get(url_for('add_an_item'))
+        self.assert200(response)
+        self.assertIn(b'Add an item', response.data)
+    
+    def test_home_user(self):
+        response = self.client.get(url_for('add_user'))
+        self.assert200(response)
+        self.assertIn(b'Add an user', response.data)
+
 
 class TestAddItem(TestBase):
     def test_item_get(self):
         response = self.client.get(url_for('add_an_item'))
         self.assert200(response)
-        self.assertIn(b'Sample Product', response.data)
+        self.assertIn(b'product_name', response.data)
+
+    def test_item_post(self):
+        response = self.client.post(
+            url_for('add_an_item'),
+            data = dict(product_name='Sample Product', product_description ='Sample desc', product_cost =1, product_quantity=1),
+            follow_redirects = True
+        )
+        self.assert200(response)
+        self.assertIn(b'product_name', response.data)
 
 class TestAddUser(TestBase):
     def test_user_get(self):
@@ -140,3 +171,31 @@ class TestAddUser(TestBase):
         )
         self.assert200(response)
         self.assertIn(b'username', response.data)
+
+
+
+class TestViewAllProducts(TestBase): # test for viewing all items
+    def test_view_products_get(self):
+        response = self.client.get(url_for('add_an_item'))
+        self.assert200(response)
+        self.assertIn(b'Sample Product', response.data)
+
+class TestUpdateQuantity(TestBase): # test for updating quantity of items
+    def test_update_quantity_get(self):
+        response = self.client.get(url_for('add_an_item'))
+        self.assert200(response)
+        self.assertIn(b'product_quantity', response.data)
+
+    def test_update_quantity_post(self):
+        response = self.client.post(
+        url_for('add_an_item'),
+        data = dict(product_name='Sample item', product_cost=56.00,product_description= 'Sample desc', product_quantity=20))
+        self.assert200(response)
+        self.assertNotEqual(Product.query.filter_by(product_quantity = 20).first(), None)
+
+
+class TestDeleteProduct(TestBase): # testing for deleting an item
+    def test_delete_product_get(self):
+        response = self.client.get(url_for('add_an_item'))
+        self.assert200(response)
+        self.assertEqual(Product.query.filter_by(product_name = 'Sample item 2').first(),None)
