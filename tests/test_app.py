@@ -97,7 +97,7 @@ from application.forms import AddProduct, AddUser, AddCart
 class TestBase(TestCase):
     def create_app(self): #sets test configuration
         app.config.update(
-            SQLALCHAMEY_DATABASE_URI = 'sqlite:///test.db',
+            SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db',
             SECRET_KEY = "choochums",
             LIVESERVER_PORT = 5000,
             DEBUG = True,
