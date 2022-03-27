@@ -2,7 +2,7 @@ version: "3.8"
 services:
   mysql:
     container_name: mysql
-    image: phoenixpatch/fund-proj-db:latest
+    image: phoenixpatch/duo-app:latest
     build: ./db
     volumes:
       - type: volume
@@ -15,7 +15,7 @@ services:
       MYSQL_DATABASE: app-db
   flask-app:
     container_name: flask-app
-    image: phoenixpatch/duo-app:latest
+    image: phoenixpatch/thedatinggame:v2
     build: ./flask-app
     networks:
       - app-net
