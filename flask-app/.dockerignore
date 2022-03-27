@@ -2,5 +2,4 @@
 *.md
 .gitignore
 figures/
-/tests
-tests
+tests/
