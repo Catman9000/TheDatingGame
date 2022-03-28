@@ -1,0 +1,6 @@
+*.sh
+*.md
+.gitignore
+figures/
+/tests
+tests
