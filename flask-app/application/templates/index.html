@@ -1,0 +1,15 @@
+<html lang="en">
+    <head>
+        <title>Dating Game Quiz App</title>
+    </head>
+    <body style="background-color: lightblue;">
+        <h1>Cat Treat Store</h1>
+        <a href="{{ url_for('index') }}">Home</a> || <a href="{{ url_for('Shopping_Cart') }}">Shopping Cart</a> || <a href="{{ url_for('add_an_item') }}">Add an item</a> || <a href="{{ url_for('add_user') }}">Add an user</a> 
+        {% for product in listofProducts %}
+        <p>{{product.product_name}}
+        {{product.product_description}}
+        {{product.product_cost}}
+        {{product.product_quantity}}</p>
+        {% endfor %}
+    </body>
+</html>
