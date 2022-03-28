@@ -18,7 +18,6 @@ pipeline {
                 sh "docker-compose push"
             }
         }
-hi
 
 
             stage('deploy stack') {
