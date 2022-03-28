@@ -30,7 +30,6 @@ pipeline {
             
         }
     }
-tell my man shut up
     post {
         always {
             archiveArtifacts artifacts: "htmlcov/*"
