@@ -2,10 +2,5 @@
 *.md
 .gitignore
 figures/
-<<<<<<< HEAD
 tests/
 create.py
-=======
-/tests
-tests
->>>>>>> parent of 0bc45f5 (added build stage7)
