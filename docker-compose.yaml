@@ -2,7 +2,7 @@ version: "3.8"
 services:
   mysql:
     container_name: mysql
-    image: phoenixpatch/duo-app:latest
+    image: phoenixpatch/thedatinggame:v2
     build: ./db
     volumes:
       - type: volume
