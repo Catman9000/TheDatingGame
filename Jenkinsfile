@@ -3,10 +3,8 @@ pipeline {
     stages {
         stage('test') {
             steps {
-                dir('tests') {
-                    sh "rm tests/test_int*"
-                    sh "bash test.sh"
-                }
+                sh "rm tests/test_int*"
+                sh "bash test.sh"
             }
         }
         stage('build and push') {
